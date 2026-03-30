@@ -5,13 +5,8 @@ interface ChatPart {
 }
 
 interface ChatContent {
-  role: 'user' | 'model' | 'assistant';
+  role: 'user' | 'model';
   parts: ChatPart[];
-}
-
-interface ChatResponse {
-  response: string;
-  history: ChatContent[];
 }
 
 function App() {
@@ -43,7 +38,7 @@ function App() {
     setHistory(updatedHistoryWithUser);
 
     try {
-      const response = await fetch('http://localhost:8000/chat', {
+      const response = await fetch('http://localhost:8000/api/v1/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
